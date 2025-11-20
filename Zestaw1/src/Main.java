@@ -1,113 +1,145 @@
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Main {
+public class Main import java.util.Scanner;
+import java.util.Random;
+
+public class Zajecia2 {
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
         // Zadanie 1
-        double Celsius, Fahrenheit;
-        Scanner degreeAsk = new Scanner(System.in);
-        System.out.println("Wpisz liczbę w stopniach Celsiusza: ");
-        Celsius = degreeAsk.nextDouble();
-        Fahrenheit = 1.8 * Celsius + 32;
-        System.out.println("Równa się to tyle stopni Fahrenheita: " + Fahrenheit);
+        System.out.println("Zadanie 1 - liczby nieparzyste do n");
+        int n1 = sc.nextInt();
+        for (int i = 1; i <= n1; i += 2) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
 
         // Zadanie 2
-        int[] numbers = new int[3];
-        Scanner numberSort = new Scanner(System.in);
-        System.out.println("Wpisz trzy liczby całkowite");
-        numbers[0] = numberSort.nextInt();
-        numbers[1] = numberSort.nextInt();
-        numbers[2] = numberSort.nextInt();
-        Arrays.sort(numbers);
-        System.out.println("Największa: " + numbers[2] + " Najmniejsza: " + numbers[0]);
+        System.out.println("Zadanie 2 - suma od A do B (3 pętle)");
+        int A = sc.nextInt();
+        int B = sc.nextInt();
+        int suma = 0, i;
+
+        i = A; suma = 0;
+        while (i <= B) { suma += i; i++; }
+        System.out.println(suma);
+
+        i = A; suma = 0;
+        do { suma += i; i++; } while (i <= B);
+        System.out.println(suma);
+
+        suma = 0;
+        for (i = A; i <= B; i++) { suma += i; }
+        System.out.println(suma);
 
         // Zadanie 3
-        double[] bmiData = new double[3];
-        String result;
-        Scanner bmi = new Scanner(System.in);
-        System.out.println("Wpisz swoją wagę (w kg) oraz wzrost (w metrach):");
-        bmiData[0] = bmi.nextDouble();
-        bmiData[1] = bmi.nextDouble();
-        bmiData[2] = bmiData[0] / (bmiData[1] * bmiData[1]);
-        if (bmiData[2] < 18.5) {
-            result = " - Niedowaga.";
-        } else if (bmiData[2] >= 18.5 && bmiData[2] <= 24.9) {
-            result = " - Waga prawidłowa.";
-        } else {
-            result = " - Nadwaga.";
+        System.out.println("Zadanie 3 - potęgi 2 do n");
+        int n3 = sc.nextInt();
+        int p = 1;
+        while (p <= n3) {
+            System.out.println(p);
+            p *= 2;
         }
-        System.out.println("BMI wynosi: " + bmiData[2] + result);
 
         // Zadanie 4
-        double income, tax;
-        Scanner netIncome = new Scanner(System.in);
-        System.out.println("Wpisz swój dochód (w zł): ");
-        income = netIncome.nextDouble();
-        if (income <= 85528) {
-            tax = 0.18 * income - 556.02;
-        } else {
-            tax = 0.32 * (income - 85528) + 14839.02;
-        }
-        System.out.println("Twój podatek wynosi: " + tax + " zł.");
+        System.out.println("Zadanie 4 - suma aż do 0");
+        int suma4 = 0;
+        int x;
+        do {
+            x = sc.nextInt();
+            suma4 += x;
+        } while (x != 0);
+        System.out.println("Suma = " + suma4);
 
         // Zadanie 5
-        double cena, rata;
-        int liczbaRat;
-        Scanner kalkRat = new Scanner(System.in);
-        System.out.println("Wpisz cenę zakupu (100 zł - 1k zł) oraz liczbę rat (od 6 do 48): ");
-        cena = kalkRat.nextDouble();
-        liczbaRat = kalkRat.nextInt();
-        if (cena <= 100 || cena >= 10000 || liczbaRat < 6 || liczbaRat > 48 ) {
-            System.out.println("Błędne dane. Wpisz dane ponownie zgodnie z zakresem.");
-        } else if (liczbaRat <= 12) {
-            rata = (cena / liczbaRat);
-            rata += 0.025 * rata;
-            System.out.println("Miesięczna rata wynosi: " + rata + " zł.");
-        } else if (liczbaRat <= 24){
-            rata = (cena / liczbaRat);
-            rata += 0.05 * rata;
-            System.out.println("Miesięczna rata wynosi: " + rata + " zł.");
-        } else {
-            rata = (cena / liczbaRat);
-            rata += 0.1 * rata;
-            System.out.println("Miesięczna rata wynosi: " + rata + " zł.");
-        }
+        System.out.println("Zadanie 5 - min, max, suma i średnia");
+        int min = Integer.MAX_VALUE, max = Integer.MIN_VALUE, y;
+        do {
+            y = sc.nextInt();
+            if (y != 0) {
+                if (y < min) min = y;
+                if (y > max) max = y;
+            }
+        } while (y != 0);
+        int sumaMinMax = min + max;
+        double srednia = (min + max) / 2.0;
+        System.out.println("Suma min i max: " + sumaMinMax);
+        System.out.println("Średnia: " + srednia);
+
         // Zadanie 6
-        double a, b, wynik;
-        char dzialanie;
-        Scanner calc = new Scanner(System.in);
-        System.out.println("Prosty kalkulator - dodawanie, odejmowanie, mnożenie i dzielenie.");
-        System.out.println("Wpisz pierwszą liczbę: ");
-        a = calc.nextDouble();
-        System.out.println("Wpisz działanie (+, -, *, /): ");
-        dzialanie = calc.next().charAt(0);
-        System.out.println("Wpisz drugą liczbę: ");
-        b = calc.nextDouble();
+        System.out.println("Zadanie 6 - Gra za dużo, za mało");
+        Random rand = new Random();
+        int secret = rand.nextInt(100) + 1;
+        int guess;
+        do {
+            guess = sc.nextInt();
+            if (guess > secret) System.out.println("Za dużo");
+            else if (guess < secret) System.out.println("Za mało");
+        } while (guess != secret);
+        System.out.println("Gratulacje!");
 
-        switch (dzialanie) {
-            case '+':
-                wynik = a + b;
-                System.out.println("Wynik: " + wynik);
-                break;
-            case '-':
-                wynik = a - b;
-                System.out.println("Wynik: " + wynik);
-                break;
-            case '*':
-                wynik = a * b;
-                System.out.println("Wynik: " + wynik);
-                break;
-            case '/':
-                if (b == 0) {
-                    System.out.println("Błąd: nie można dzielić przez zero!");
-                } else {
-                    wynik = a / b;
-                    System.out.println("Wynik: " + wynik);
-                }
-                break;
-            default:
-                System.out.println("Błędny symbol działania!");
+        // Zadanie 7
+        System.out.println("Zadanie 7 - prostokąt");
+        char znak = sc.next().charAt(0);
+        int xPos = sc.nextInt();
+        int yPos = sc.nextInt();
+        int a = sc.nextInt(); // wys
+        int b = sc.nextInt(); // szer
+        for (int y2 = 1; y2 < yPos; y2++) System.out.println();
+        for (int i2 = 0; i2 < a; i2++) {
+            for (int sp = 1; sp < xPos; sp++) System.out.print(" ");
+            for (int j2 = 0; j2 < b; j2++) System.out.print(znak);
+            System.out.println();
         }
-    }
 
+        // Zadanie 8
+        System.out.println("Zadanie 8 - choinka");
+        int h = sc.nextInt();
+        for (int r = 1; r <= h; r++) {
+            for (int j2 = 1; j2 <= 2*r-1; j2++) System.out.print("*");
+            System.out.println();
+        }
+
+        // Zadanie 9
+        System.out.println("Zadanie 9 - suma cyfr i stosunek średnich");
+        int num = sc.nextInt();
+        int suma9 = 0, parz = 0, nieparz = 0, cParz = 0, cNie = 0;
+        int tmp = Math.abs(num);
+        while (tmp > 0) {
+            int d = tmp % 10;
+            suma9 += d;
+            if (d % 2 == 0) { parz += d; cParz++; }
+            else { nieparz += d; cNie++; }
+            tmp /= 10;
+        }
+        System.out.println("Suma cyfr: " + suma9);
+        if (cParz > 0 && cNie > 0) {
+            double srParz = (double)parz / cParz;
+            double srNie = (double)nieparz / cNie;
+            System.out.println("Stosunek: " + (srParz/srNie));
+        }
+
+        // Zadanie 10
+        System.out.println("Zadanie 10 - dzielniki liczby");
+        int n10 = sc.nextInt();
+        for (int d = 1; d <= n10; d++) {
+            if (n10 % d == 0) System.out.print(d + " ");
+        }
+        System.out.println();
+
+        // Zadanie 11
+        System.out.println("Zadanie 11 - liczba pierwsza?");
+        int n11 = sc.nextInt();
+        boolean pierwsza = true;
+        if (n11 <= 1) pierwsza = false;
+        else {
+            for (int d = 2; d*d <= n11; d++) {
+                if (n11 % d == 0) { pierwsza = false; break; }
+            }
+        }
+        if (pierwsza) System.out.println("TAK");
+        else System.out.println("NIE");
+    }
 }

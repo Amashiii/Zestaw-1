@@ -1,16 +1,113 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.util.Arrays;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        // Zadanie 1
+        double Celsius, Fahrenheit;
+        Scanner degreeAsk = new Scanner(System.in);
+        System.out.println("Wpisz liczbę w stopniach Celsiusza: ");
+        Celsius = degreeAsk.nextDouble();
+        Fahrenheit = 1.8 * Celsius + 32;
+        System.out.println("Równa się to tyle stopni Fahrenheita: " + Fahrenheit);
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-            // nowe
+        // Zadanie 2
+        int[] numbers = new int[3];
+        Scanner numberSort = new Scanner(System.in);
+        System.out.println("Wpisz trzy liczby całkowite");
+        numbers[0] = numberSort.nextInt();
+        numbers[1] = numberSort.nextInt();
+        numbers[2] = numberSort.nextInt();
+        Arrays.sort(numbers);
+        System.out.println("Największa: " + numbers[2] + " Najmniejsza: " + numbers[0]);
+
+        // Zadanie 3
+        double[] bmiData = new double[3];
+        String result;
+        Scanner bmi = new Scanner(System.in);
+        System.out.println("Wpisz swoją wagę (w kg) oraz wzrost (w metrach):");
+        bmiData[0] = bmi.nextDouble();
+        bmiData[1] = bmi.nextDouble();
+        bmiData[2] = bmiData[0] / (bmiData[1] * bmiData[1]);
+        if (bmiData[2] < 18.5) {
+            result = " - Niedowaga.";
+        } else if (bmiData[2] >= 18.5 && bmiData[2] <= 24.9) {
+            result = " - Waga prawidłowa.";
+        } else {
+            result = " - Nadwaga.";
+        }
+        System.out.println("BMI wynosi: " + bmiData[2] + result);
+
+        // Zadanie 4
+        double income, tax;
+        Scanner netIncome = new Scanner(System.in);
+        System.out.println("Wpisz swój dochód (w zł): ");
+        income = netIncome.nextDouble();
+        if (income <= 85528) {
+            tax = 0.18 * income - 556.02;
+        } else {
+            tax = 0.32 * (income - 85528) + 14839.02;
+        }
+        System.out.println("Twój podatek wynosi: " + tax + " zł.");
+
+        // Zadanie 5
+        double cena, rata;
+        int liczbaRat;
+        Scanner kalkRat = new Scanner(System.in);
+        System.out.println("Wpisz cenę zakupu (100 zł - 1k zł) oraz liczbę rat (od 6 do 48): ");
+        cena = kalkRat.nextDouble();
+        liczbaRat = kalkRat.nextInt();
+        if (cena <= 100 || cena >= 10000 || liczbaRat < 6 || liczbaRat > 48 ) {
+            System.out.println("Błędne dane. Wpisz dane ponownie zgodnie z zakresem.");
+        } else if (liczbaRat <= 12) {
+            rata = (cena / liczbaRat);
+            rata += 0.025 * rata;
+            System.out.println("Miesięczna rata wynosi: " + rata + " zł.");
+        } else if (liczbaRat <= 24){
+            rata = (cena / liczbaRat);
+            rata += 0.05 * rata;
+            System.out.println("Miesięczna rata wynosi: " + rata + " zł.");
+        } else {
+            rata = (cena / liczbaRat);
+            rata += 0.1 * rata;
+            System.out.println("Miesięczna rata wynosi: " + rata + " zł.");
+        }
+        // Zadanie 6
+        double a, b, wynik;
+        char dzialanie;
+        Scanner calc = new Scanner(System.in);
+        System.out.println("Prosty kalkulator - dodawanie, odejmowanie, mnożenie i dzielenie.");
+        System.out.println("Wpisz pierwszą liczbę: ");
+        a = calc.nextDouble();
+        System.out.println("Wpisz działanie (+, -, *, /): ");
+        dzialanie = calc.next().charAt(0);
+        System.out.println("Wpisz drugą liczbę: ");
+        b = calc.nextDouble();
+
+        switch (dzialanie) {
+            case '+':
+                wynik = a + b;
+                System.out.println("Wynik: " + wynik);
+                break;
+            case '-':
+                wynik = a - b;
+                System.out.println("Wynik: " + wynik);
+                break;
+            case '*':
+                wynik = a * b;
+                System.out.println("Wynik: " + wynik);
+                break;
+            case '/':
+                if (b == 0) {
+                    System.out.println("Błąd: nie można dzielić przez zero!");
+                } else {
+                    wynik = a / b;
+                    System.out.println("Wynik: " + wynik);
+                }
+                break;
+            default:
+                System.out.println("Błędny symbol działania!");
         }
     }
+
 }

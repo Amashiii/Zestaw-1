@@ -99,7 +99,7 @@ public class Zestaw2 {
             System.out.println();
         }
 
-        // Zadanie 9
+        // zadanie 9
         System.out.println("Zadanie 9 - suma cyfr i stosunek średnich");
         int num = sc.nextInt();
         int suma9 = 0, parz = 0, nieparz = 0, cParz = 0, cNie = 0;
